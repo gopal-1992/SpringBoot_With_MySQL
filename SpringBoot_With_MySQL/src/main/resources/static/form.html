@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Booking Form</title>
+</head>
+<body>
+<center><h2>Ticket Booking Application</h2>
+<form id="myForm" action="/post.html">
+  <label for="amount">Amount:</label>
+  <input type="text" id="amount" name="amount"><br>
+  <br>
+  <label for="catagory">Category:</label>
+  <input type="text" id="catagory" name="catagory"><br>
+  <br>
+  <input type="submit" value="Submit" onclick="submitPage();">
+</form> 
+</center>
+</body>
+<script type="text/javascript">
+fuction submitPage(){
+	const param = new URLSearchParams(window.location.serach);
+	var data = {amount:param.get('amount'),catagory: param.get('catagory')};
+}
+const form = document.querySelector("myForm");
+form.addEventListener("submit", submitPage);
+
+</script>
+</html>

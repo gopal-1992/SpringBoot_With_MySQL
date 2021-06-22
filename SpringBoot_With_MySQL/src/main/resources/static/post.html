@@ -1,0 +1,37 @@
+<html>
+  <head>
+    <title> Person Information </title>
+    <meta charset="UTF-8">
+    <script>
+    var baseurl = "http://localhost:9090/bookTickets";
+    var xhttp = new XMLHttpRequest();
+    xhttp.open("POST", baseurl, true); 
+    xhttp.setRequestHeader("Content-Type", "application/json");
+    xhttp.onreadystatechange = function() {
+       if (this.readyState == 4 && this.status == 200) {
+         // Response
+         alert("Data inserted sucessfully");
+         var response = this.responseText;
+       }
+       else if(this.readyState == 0 && this.status == 500 ){
+    	   alert("Error Ocuured while inserting the data");
+       }
+    };
+    
+  //  var data = {amount:"500",catagory: 'beer'};
+  
+  var data=window.parent.location.search.replace('?', '').split('&');
+  var JsonData = {};
+  if (data != '') {
+      for (i = 0; i < data.length; i++) {
+    	  JsonData[data[i].split('=')[0]] = data[i].split('=')[1];
+      }
+  }
+  console.log(JsonData);
+    xhttp.send(JSON.stringify(JsonData));
+    </script>
+  </head>
+  <body>
+    <div id="personinfo"> </div>
+  </body>
+</html>
